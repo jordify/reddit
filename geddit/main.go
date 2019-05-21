@@ -2,12 +2,17 @@ package main
 
 import (
   "fmt"
-  "github.com/jordify/reddit"
   "log"
+  "flag"
+
+  "github.com/jordify/reddit"
 )
 
 func main() {
-  items, err := reddit.Get("golang")
+  subreddit := flag.String("subreddit", "golang", "Subreddit to query")
+  flag.Parse()
+
+  items, err := reddit.Get(*subreddit)
   if err != nil {
     log.Fatal(err)
   }
